@@ -7,7 +7,7 @@ FAIRSEQ_DIR=fairseq
 
 ######## Command line arguments ########
 TGT_FILE=$1
-SRC_FILE=es
+SRC_FILE=en
 
 DATA_DIR=$2
 SAVE_DIR=$3
@@ -189,8 +189,8 @@ then
     --no-progress-bar  > $TRANSLATIONS/${TGT_FILE}_${SRC_FILE}.out
 fi
 
-cat $TRANSLATIONS/${TGT_FILE}_${SRC_FILE}.out | grep -P "^H" |sort -V |cut -f 3- | sed 's/\[ro_RO\]//g'  > $TRANSLATIONS/${TGT_FILE}_${SRC_FILE}.bpe.hyp
-cat $TRANSLATIONS/${TGT_FILE}_${SRC_FILE}.out | grep -P "^T" |sort -V |cut -f 2- | sed 's/\[ro_RO\]//g'  > $TRANSLATIONS/${TGT_FILE}_${SRC_FILE}.bpe.ref
+cat $TRANSLATIONS/${TGT_FILE}_${SRC_FILE}.out | ggrep -P "^H" |sort -V |cut -f 3- | sed 's/\[ro_RO\]//g'  > $TRANSLATIONS/${TGT_FILE}_${SRC_FILE}.bpe.hyp
+cat $TRANSLATIONS/${TGT_FILE}_${SRC_FILE}.out | ggrep -P "^T" |sort -V |cut -f 2- | sed 's/\[ro_RO\]//g'  > $TRANSLATIONS/${TGT_FILE}_${SRC_FILE}.bpe.ref
 
 echo "################ Done decoding ################"
 
